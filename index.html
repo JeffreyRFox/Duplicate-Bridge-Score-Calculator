@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+  <title>Bridge Score Calculator</title>
+  <meta charset='utf-8'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no' />
+<style type="text/css">
+      body { padding: 0px; font-size: 12pt; }
+
+p{font-size=24pt;height:48px;text-align:center;background-color:#CCFFCC;width:300px;float:right;padding:0px;
+}
+div{justify-content:center;}
+button{
+    padding:0px;
+    width:60px;
+    height:60px;
+    background-color:#FFFFCC;
+    font-family:Times New Roman;
+    font-size:18pt;
+    text-align:center;
+    border-style:groove;
+    border-top-left-radius:70px;
+    border-top-right-radius:70px;
+    border-bottom-left-radius:70px;
+    border-bottom-right-radius:70px;
+    float:left;
+}
+</style></head>
+<body>
+<div>   
+<button onclick="bidNum=0;suit=0;dble=0;vul=0;sayBid();result=-2;sayResult();">Bid</button><b>
+    <p id="bid">press 'Bid' to start</p>
+</div><br><br><br><br><div>
+    <button onclick="result=-2;resNum=0;sayResult();sayScore();">Res</button>
+    <p id="results">enter result (-|=|+)</p>
+</div><br><br><br><br><div>
+    <button onclick="score=0;sayScore();">Scr</button> 
+<p id="scored">No score yet</p><br><br>
+</div></b><br><br><br>
+    <button onclick="suit=1;sayBid();result=-2;sayResult();">C</button>
+    <button onclick="suit=2;sayBid();result=-2;sayResult();">D</button>
+    <button onclick="suit=3;sayBid();result=-2;sayResult();">H</button>
+    <button onclick="suit=4;sayBid();result=-2;sayResult();">S</button>
+    <button onclick="suit=5;sayBid();result=-2;sayResult();">N</button> <br><br><br><br>
+    <button onclick="dble=1;sayBid(); result=-2;sayScore();">x</button>
+    <button onclick="dble=2;sayBid(); result=-2;sayScore();">xx</button>
+    <button onclick="vul=1;sayBid();result=-2;sayScore();">
+vul</button>
+    <button onclick="if((bidNum>0)&&(suit>0))result=-1;resNum=0;sayResult();sayScore();">-</button>
+    <button onclick="if((bidNum>0)&&(suit>0))result=1;resNum=0;sayResult();sayScore();">+</button>
+    <button onclick= "if((bidNum>0)&&(suit>0))result=0; sayResult(); sayScore();">=</button><br><br><br><br>
+    <button onclick="digit(1);">1</button>
+    <button onclick="digit(2);">2</button>
+    <button onclick="digit(3);">3</button>
+    <button onclick="digit(4);">4</button>
+    <button onclick="digit(5);">5</button>
+    <button onclick="digit(6);">6</button>   
+    <br><br><br>
+    <button onclick="digit(7);">7</button>
+    <button onclick="digit(8);">8</button>
+    <button onclick="digit(9);">9</button>
+    <button onclick="digit(10);">10</button>
+    <button onclick="digit(11);">11</button>
+    <button onclick="digit(12);">12</button>
+    <br><br><br>
+    <button onclick="digit(13);">13</button>
+  
+  <script type="text/javascript">
+       var suit=0; var dble=0;
+       var vul =0; var bidNum =0; 
+       var saying="";var resulting="";
+       var result =-2; var resNum=-1;
+       var score = 0;
+       function makeBid() {
+   	if (bidNum==0) {saying = "enter number, suit, doubling, and vulnerability" ; return ;}
+   else saying = "" + bidNum + " ";
+   if (suit==0) {saying += " enter suit,doubling, and vulnerability" ;
+   return ; }
+   else 
+   { if (suit==1) saying += "Club";
+     if (suit==2) saying += "Diamond";
+     if (suit==3) saying += "Heart"; 
+     if (suit==4) saying += "Spade";
+     if (suit==5) saying += "No trump";
+     if ((bidNum > 1)&&(suit<5)) saying += "s";
+     if (dble==1) saying += " doubled ";
+     if (dble==2) saying += " redoubled ";
+     if (dble==0) saying += " ";
+     if (vul==0) saying += "Not ";
+     saying += "vulnerable ";
+     return;}
+}
+
+       function sayBid(){
+         makeBid(); document.getElementById("bid").innerHTML = saying;
+}
+       function digit(n){
+          if ((bidNum==0) && (n<8)){ bidNum = n; sayBid();}
+          if ((result>-2)){ resNum = n; sayResult(); sayScore();}
+       }
+       function sayResult()
+       {
+        if (result==-2)
+        {resulting ="enter result (-|=|+)";
+sayScore();} 
+        if (result==0)
+          {resulting = "= (made " + bidNum +")";resNum=0;sayScore();}
+        if ((result==1)&&(resNum>0)) {resulting = "+ "  + resNum + " overtrick";
+        if(resNum>1)resulting += "s";sayScore();}
+        if ((result==-1)&&(resNum>0)) {resulting = "Down "+ resNum ; sayScore();}
+        if ((result==1)&&(resNum==0)) resulting = "enter number of overtricks";
+        if ((result==-1)&&(resNum==0)) resulting = "enter number of tricks down"; document.getElementById("results").innerHTML =resulting;
+      }
+      
+     
+function sayScore(){
+    if(result==0) made();
+    if(result<-1) score="enter result";  
+    if(result==-1) down();
+    if(result==1) overTricks();
+document.getElementById( "scored").innerHTML =""+score;
+}
+function made(){ score=(20+10*(suit>2))*bidNum+10*(suit==5);
+score *= (dble==0) + 2*(dble==1) + 4*(dble==2);
+if((score>100)&&(bidNum<6)) score += 300 + 200*vul;
+score += 50*(score<100) + 50*dble;
+score += (bidNum==6)*(800 + vul * 450) + (bidNum==7) * (1300 + vul * 700);
+}
+function down(){
+    if(resNum>(bidNum+6)){score = "error -- too many tricks down";return;}
+    if(resNum==0){score = "enter number of tricks down";return;}
+    if(resNum>(bidNum+6)){score = "error -- too many tricks down";return;} 
+    if(dble==0) {score = -resNum*50*(vul+1);return;}
+    if ((resNum+vul)>2) {score =
+(-500 - 300 * (resNum + vul - 3)) * dble;return;}
+    if (resNum==1) score = (-100 * (1 + vul)) * dble;
+    else score = -300 * dble;
+}
+function overTricks(){
+    if((bidNum + resNum)>7) { score = "error -- too many overtricks";return;}
+    if(resNum==0){score = "enter number of overtricks";return;}
+    made();
+    score += (dble==0)*(20 + 10 * (suit>2)) * resNum;
+    score += dble * 100 * resNum * (vul + 1);
+}
+</script>
+</body>
