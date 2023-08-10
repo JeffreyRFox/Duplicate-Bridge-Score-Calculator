@@ -5,11 +5,11 @@
   <meta charset='utf-8'/>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no' />
 <style type="text/css">
-      body { padding: 0px; font-size: 14pt; }
+      body { padding: 0px; font-size: 16pt; }
 
 p{font-size=24pt;height:48px;text-align:center;background-color:#CCFFCC;width:300px;float:right;padding:0px;
 }
-div{justify-content:center;}
+<!--  div{justify-content:center;} -->
 button{
     padding:0px;
     width:60px;
@@ -27,28 +27,31 @@ button{
 }
 </style></head>
 <body>
-<div>   
+<div display: block;>   
 <button onclick="bidNum=0;suit=0;dble=0;vul=0;sayBid();result=-2;sayResult();">Bid</button><b>
     <p id="bid">press 'Bid' to start</p>
-</div><br><br><br><div>
+</div><br><br><br><div display:block>
     <button onclick="result=-2;resNum=0;sayResult();sayScore();">Res</button>
     <p id="results">enter result (-|=|+)</p>
-</div><br><br><br><div>
+</div><br><br><br><div display: block;>
     <button onclick="score=0;sayScore();">Scr</button> 
-<p id="scored">No score yet</p><br><br>
-</div></b><br><br>
-    <button onclick="suit=1;sayBid();result=-2;sayResult();">C</button>
+<p id="scored">No score yet</p><br>
+</div><br><br><br><br>
+<div display: block;>    <button onclick="suit=1;sayBid();result=-2;sayResult();">C</button>
     <button onclick="suit=2;sayBid();result=-2;sayResult();">D</button>
     <button onclick="suit=3;sayBid();result=-2;sayResult();">H</button>
     <button onclick="suit=4;sayBid();result=-2;sayResult();">S</button>
-    <button onclick="suit=5;sayBid();result=-2;sayResult();">N</button> <br><br><br>
+    <button onclick="suit=5;sayBid();result=-2;sayResult();">N</button> </div>
+<br><br><br>
+<div display: block;>
     <button onclick="dble=1;sayBid(); result=-2;sayScore();">x</button>
     <button onclick="dble=2;sayBid(); result=-2;sayScore();">xx</button>
     <button onclick="vul=1;sayBid();result=-2;sayScore();">
 vul</button>
     <button onclick="if((bidNum>0)&&(suit>0))result=-1;resNum=0;sayResult();sayScore();">-</button>
     <button onclick="if((bidNum>0)&&(suit>0))result=1;resNum=0;sayResult();sayScore();">+</button>
-    <button onclick= "if((bidNum>0)&&(suit>0))result=0; sayResult(); sayScore();">=</button><br><br><br>
+    <button onclick= "if((bidNum>0)&&(suit>0))result=0; sayResult(); sayScore();">=</button></div>
+<br><br><br>
     <button onclick="digit(1);">1</button>
     <button onclick="digit(2);">2</button>
     <button onclick="digit(3);">3</button>
