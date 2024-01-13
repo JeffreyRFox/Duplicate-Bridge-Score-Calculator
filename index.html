@@ -5,11 +5,10 @@
   <meta charset='utf-8'/>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no' />
 <style type="text/css">
-      body { padding: 0px; font-size: 16pt; }
+      body { padding: 0px;}
 
-p{font-size=24pt;height:48px;text-align:center;background-color:#CCFFCC;width:300px;float:right;padding:0px;
+p{font-size=8pt;text-align:right;background-color:#CCFFCC;float:right;
 }
-<!--  div{justify-content:center;} -->
 button{
     padding:0px;
     width:60px;
@@ -27,45 +26,45 @@ button{
 }
 </style></head>
 <body>
-<div display: block;>   
+<span display: block;height:60px;width:90%;>   
 <button onclick="bidNum=0;suit=0;dble=0;vul=0;sayBid();result=-2;sayResult();">Bid</button><b>
     <p id="bid">press 'Bid' to start</p>
-</div><br><br><br><div display:block>
+</span><br><br><br><br><span display:block;height:60px;width:90%;>
     <button onclick="result=-2;resNum=0;sayResult();sayScore();">Res</button>
     <p id="results">enter result (-|=|+)</p>
-</div><br><br><br><div display: block;>
+</span><br><br><br><br><span display: block;height:60px;width:90%;>
     <button onclick="score=0;sayScore();">Scr</button> 
 <p id="scored">No score yet</p><br>
-</div><br><br><br><br>
-<div display: block;>    <button onclick="suit=1;sayBid();result=-2;sayResult();">C</button>
+</span><br><br><br>
+<span display: block;>    <button onclick="suit=1;sayBid();result=-2;sayResult();">C</button>
     <button onclick="suit=2;sayBid();result=-2;sayResult();">D</button>
     <button onclick="suit=3;sayBid();result=-2;sayResult();">H</button>
     <button onclick="suit=4;sayBid();result=-2;sayResult();">S</button>
-    <button onclick="suit=5;sayBid();result=-2;sayResult();">N</button> </div>
-<br><br><br>
-<div display: block;>
+    <button onclick="suit=5;sayBid();result=-2;sayResult();">N</button> </span>
+<br><br><br><br>
+<span display: block;>
     <button onclick="dble=1;sayBid(); result=-2;sayScore();">x</button>
     <button onclick="dble=2;sayBid(); result=-2;sayScore();">xx</button>
     <button onclick="vul=1;sayBid();result=-2;sayScore();">
 vul</button>
     <button onclick="if((bidNum>0)&&(suit>0))result=-1;resNum=0;sayResult();sayScore();">-</button>
-    <button onclick="if((bidNum>0)&&(suit>0))result=1;resNum=0;sayResult();sayScore();">+</button>
-    <button onclick= "if((bidNum>0)&&(suit>0))result=0; sayResult(); sayScore();">=</button></div>
-<br><br><br>
+    <button onclick="if((bidNum>0)&&(suit>0))result=1;resNum=0;sayResult();sayScore();">+</button></span>
+    <br><br><br><br>
+    <button onclick= "if((bidNum>0)&&(suit>0))result=0; sayResult(); sayScore();">=</button>
     <button onclick="digit(1);">1</button>
     <button onclick="digit(2);">2</button>
     <button onclick="digit(3);">3</button>
     <button onclick="digit(4);">4</button>
+<br><br><br><br>
     <button onclick="digit(5);">5</button>
     <button onclick="digit(6);">6</button>   
-    <br><br>
     <button onclick="digit(7);">7</button>
     <button onclick="digit(8);">8</button>
     <button onclick="digit(9);">9</button>
+<br><br><br><br>
     <button onclick="digit(10);">10</button>
     <button onclick="digit(11);">11</button>
     <button onclick="digit(12);">12</button>
-    <br><br>
     <button onclick="digit(13);">13</button>
   
   <script type="text/javascript">
@@ -75,9 +74,9 @@ vul</button>
        var result =-2; var resNum=-1;
        var score = 0;
        function makeBid() {
-   	if (bidNum==0) {saying = "enter number, suit, doubling, and vulnerability" ; return ;}
+   	if (bidNum==0) {saying = "enter number, suit,<br>doubling, and vulnerability" ; return ;}
    else saying = "" + bidNum + " ";
-   if (suit==0) {saying += " enter suit,doubling, and vulnerability" ;
+   if (suit==0) {saying += " enter suit,<br>doubling, and vulnerability" ;
    return ; }
    else 
    { if (suit==1) saying += "Club";
@@ -86,11 +85,12 @@ vul</button>
      if (suit==4) saying += "Spade";
      if (suit==5) saying += "No trump";
      if ((bidNum > 1)&&(suit<5)) saying += "s";
-     if (dble==1) saying += " doubled ";
-     if (dble==2) saying += " redoubled ";
+     saying += ",<br>"
+     if (dble==1) saying += " doubled, ";
+     if (dble==2) saying += " redoubled, ";
      if (dble==0) saying += " ";
-     if (vul==0) saying += "Not ";
-     saying += "vulnerable ";
+     if (vul==0) saying += "not ";
+     saying += "vulnerable";
      return;}
 }
 
