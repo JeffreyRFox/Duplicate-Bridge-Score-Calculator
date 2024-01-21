@@ -85,7 +85,7 @@ vul</button>
      if (suit==4) saying += "Spade";
      if (suit==5) saying += "No trump";
      if ((bidNum > 1)&&(suit<5)) saying += "s";
-     saying += ",<br>"
+     saying += ",<br>";
      if (dble==1) saying += " doubled, ";
      if (dble==2) saying += " redoubled, ";
      if (dble==0) saying += " ";
@@ -125,7 +125,7 @@ document.getElementById( "scored").innerHTML =""+score;
 }
 function made(){ score=(20+10*(suit>2))*bidNum+10*(suit==5);
 score *= (dble==0) + 2*(dble==1) + 4*(dble==2);
-if((score=>100)&&(bidNum<6)) score += 300 + 200*vul;
+if((score>=100)&&(bidNum<6)) score += 300 + 200*vul;
 score += 50*(score<100) + 50*dble;
 score += (bidNum==6)*(800 + vul * 450) + (bidNum==7) * (1300 + vul * 700);
 }
